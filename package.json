@@ -1,0 +1,22 @@
+{
+  "name": "@gamedevalliance/gridsome-remark-video",
+  "version": "0.1.0",
+  "description": "Add support for videos to Remark using the image syntax (pandoc-style)",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamedevalliance/gridsome-remark-video.git"
+  },
+  "keywords": [
+    "remark",
+    "video",
+    "markdown",
+    "gridsome"
+  ],
+  "author": "Princesseuh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gamedevalliance/gridsome-remark-video/issues"
+  },
+  "homepage": "https://github.com/gamedevalliance/gridsome-remark-video#readme"
+}
