@@ -31,8 +31,8 @@ module.exports = function attacher(options = {}) {
 
                 node.type = 'html';
                 node.value =
-                `<video ${standaloneAttr.join(" ")}>
-                    <source type="video/mp4" src="${node.attributes.src}" ${posterAttr}></source>
+                    `<video ${standaloneAttr.join(" ")} ${posterAttr}>
+                    <source type="video/mp4" src="${node.attributes.src}"></source>
                 </video>`
             }
         }

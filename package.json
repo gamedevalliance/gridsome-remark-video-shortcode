@@ -1,6 +1,6 @@
 {
-  "name": "@gamedevalliance/gridsome-remark-video-shortcode",
-  "version": "0.1.0",
+  "name": "gridsome-remark-video-shortcode",
+  "version": "0.1.1",
   "description": "Add a video shortcode for gridsome (inspired by gatsby-remark-video-shortcode)",
   "main": "index.js",
   "repository": {
