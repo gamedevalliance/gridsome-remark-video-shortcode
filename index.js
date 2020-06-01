@@ -1,47 +1,39 @@
-const visit = require('unist-util-visit')
+const visit = require('unist-util-visit');
 
 module.exports = function attacher(options = {}) {
     const transformer = this.data('transformer')
 
     return async function transform(tree, file, callback) {
-        if (!transformer) return callback()
-        if (!file.path) return callback()
+        const shortcodes = []
 
-        const images = []
+        visit(tree, 'shortcode', node => shortcodes.push(node))
 
-        visit(tree, 'image', node => images.push(node))
+        for (const node of shortcodes) {
+            if (node.identifier === "Video") {
+                const path = file.data.node
+                    ? transformer.resolveNodeFilePath(file.data.node, node.attributes.src)
+                    : node.attributes.src
 
-        for (const node of images) {
-            const data = node.data || {}
-            const props = data.hProperties || {}
-            const classNames = props.class || []
+                try {
+                    const asset = await transformer.assets.add(path)
+                    node.attributes.src = asset.src
+                } catch (err) {
+                    callback(err)
+                    return
+                }
 
-            const path = file.data.node
-                ? transformer.resolveNodeFilePath(file.data.node, node.url)
-                : node.url
+                standaloneAttr = Object.keys(node.attributes).filter(attribute => !["src", "poster"].includes(attribute));
 
-            let imageHTML = null
-            let noscriptHTML = null
+                var posterAttr = "";
+                if (Object.keys(node.attributes).includes("poster")) {
+                    var posterAttr = `poster="${node.attributes.poster}"`
+                }
 
-            try {
-                const asset = await transformer.assets.add(path, {
-                    alt: props.alt || node.alt,
-                    width: props.width,
-                    height: props.height,
-                    classNames,
-                    ...options
-                })
-
-                imageHTML = asset.imageHTML
-                noscriptHTML = asset.noscriptHTML
-            } catch (err) {
-                callback(err)
-                return
-            }
-
-            if (imageHTML) {
-                node.type = 'html'
-                node.value = imageHTML + noscriptHTML
+                node.type = 'html';
+                node.value =
+                `<video ${standaloneAttr.join(" ")}>
+                    <source type="video/mp4" src="${node.attributes.src}" ${posterAttr}></source>
+                </video>`
             }
         }
 

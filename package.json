@@ -1,11 +1,11 @@
 {
-  "name": "@gamedevalliance/gridsome-remark-video",
+  "name": "@gamedevalliance/gridsome-remark-video-shortcode",
   "version": "0.1.0",
-  "description": "Add support for videos to Remark using the image syntax (pandoc-style)",
+  "description": "Add a video shortcode for gridsome (inspired by gatsby-remark-video-shortcode)",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/gamedevalliance/gridsome-remark-video.git"
+    "url": "git+https://github.com/gamedevalliance/gridsome-remark-video-shortcode.git"
   },
   "keywords": [
     "remark",
@@ -16,7 +16,10 @@
   "author": "Princesseuh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/gamedevalliance/gridsome-remark-video/issues"
+    "url": "https://github.com/gamedevalliance/gridsome-remark-video-shortcode/issues"
   },
-  "homepage": "https://github.com/gamedevalliance/gridsome-remark-video#readme"
+  "homepage": "https://github.com/gamedevalliance/gridsome-remark-video-shortcode#readme",
+  "dependencies": {
+    "unist-util-visit": "^2.0.2"
+  }
 }
